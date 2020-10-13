@@ -12,6 +12,12 @@
 #include <string.h>
 #include "logic.h"
 
+/** \brief Logic Menu.
+ * Start menú and logic.
+ * \param (void)
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int logic_menu (void)
 {
 	Client listClient[LONG_CLIENT];
@@ -185,7 +191,9 @@ int logic_menu (void)
 
 /** \brief Disable Client.
  * This function receives the structure to disable a user by ID number.
- * \param list Employee* Pointer to array of employees
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -218,6 +226,15 @@ int logic_removeClient (Client* listClient, int lenClient, Publicity* listPublic
 	return retorno;
 }
 
+/** \brief Add Publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int logic_addPublicity (Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
 {
 	int retorno =-1;
@@ -234,6 +251,15 @@ int logic_addPublicity (Client* listClient, int lenClient, Publicity* listPublic
 	return retorno;
 }
 
+/** \brief Paused publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int logic_isActivePublicity (Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
 {
 	int retorno =-1;
@@ -267,6 +293,15 @@ int logic_isActivePublicity (Client* listClient, int lenClient, Publicity* listP
 	return retorno;
 }
 
+/** \brief Active publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int logic_isPausedPublicity (Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
 {
 	int retorno =-1;
@@ -300,6 +335,15 @@ int logic_isPausedPublicity (Client* listClient, int lenClient, Publicity* listP
 	return retorno;
 }
 
+/** \brief Print Client maximun publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int logic_print(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
 {
 	int retorno = -1;
@@ -321,7 +365,15 @@ int logic_print(Client* listClient, int lenClient, Publicity* listPublicity, int
 	return retorno;
 }
 
-
+/** \brief Report Client and publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
 {
 	int retorno = -1;
@@ -358,13 +410,13 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 	return retorno;
 }
 
-/** \brief find an Client by Id en returns the index position in array.
- *
- * \param Employee* list, Pointer to array of employees.
- * \param int len, Array length.
- * \param int id, Identity number employee.
- * \return Return employee index position or (-1) if [Invalid length or NULL
-pointer received or employee not found]
+/** \brief Client maximun publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
 int logic_clientMorePublicity(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)

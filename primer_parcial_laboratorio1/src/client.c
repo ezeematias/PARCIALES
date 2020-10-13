@@ -28,7 +28,7 @@ int client_newId(void)
 
 /** \brief To initialize all empty array positions.
  * this function put the flag (isEmpty) in TRUE in all and ID to 0.
- * \param list Employee* Pointer to array of employees
+ * \param list Client* Pointer to array of employees
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -111,7 +111,7 @@ int client_serchIndexEmpty(Client* list, int len)
 	return retornar;
 }
 
-/** \brief Empty employee list
+/** \brief Empty Client list
  * This function searches the structure for active employees.
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
@@ -139,7 +139,7 @@ int client_ArrayIsEmpty (Client* list, int len)
 
 /** \brief find an Client by Id en returns the index position in array.
  *
- * \param Employee* list, Pointer to array of employees.
+ * \param Client* list, Pointer to array of employees.
  * \param int len, Array length.
  * \param int id, Identity number employee.
  * \return Return employee index position or (-1) if [Invalid length or NULL
@@ -162,7 +162,7 @@ int client_findById(Client* list, int len,int id)
 
 /** \brief find an Client by CUIT.
  *
- * \param Employee* list, Pointer to array of employees.
+ * \param Client* list, Pointer to array of employees.
  * \param int len, Array length.
  * \param int id, Identity number employee.
  * \return Return employee index position or (-1) if [Invalid length or NULL
@@ -185,7 +185,7 @@ int client_findByCuit(Client* list, int len,char* cuit)
 
 /** \brief Client print
  * This function prints the list of active employees.
- * \param list Employee* Pointer to array of employees
+ * \param list Client* Pointer to array of employees
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -211,7 +211,7 @@ int client_print(Client* list, int len)
 
 /** \brief Client print
  * This function prints the list of active employees.
- * \param list Employee* Pointer to array of employees
+ * \param list Client* Pointer to array of employees
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -233,7 +233,7 @@ int client_printIdex(Client* list, int index)
 
 /** \brief Modify client.
  * This function allows you to modify existing employee data. It has a menu of options.
- * \param list Employee* Pointer to array of employees
+ * \param list Client* Pointer to array of employees
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -327,7 +327,7 @@ int client_modify(Client* list, int len)
 
 /** \brief Sort the elements in the array of client,  *
  * This function receives the order of the arguments indicates the order UP or DOWN
- * \param list Employee* Pointer to array of employees
+ * \param list Client* Pointer to array of employees
  * \param len int Array length
  * \param order int [1] indicate UP - [0] indicate DOWN
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok

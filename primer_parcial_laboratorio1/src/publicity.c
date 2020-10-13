@@ -85,7 +85,7 @@ int publicity_add(Publicity* list, int len, int idClient)
 	return retorno;
 }
 
-/** \brief Publicity print
+/** \brief Active-Publicity print
  * This function prints the list of active employees.
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
@@ -111,7 +111,7 @@ int publicity_print(Publicity* list, int len)
 	return retorno;
 }
 
-/** \brief Publicity print
+/** \brief Paused-Publicity print
  * This function prints the list of active employees.
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
@@ -137,7 +137,7 @@ int publicity_printPaused(Publicity* list, int len)
 	return retorno;
 }
 
-/** \brief Empty employee list
+/** \brief Empty Publicity list
  * This function searches the structure for active employees.
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
@@ -162,11 +162,11 @@ int publicity_ArrayIsActive (Publicity* list, int len)
 	return retorno;
 }
 
-/** \brief Empty employee list
- * This function searches the structure for active employees.
+/** \brief Empty Publicity list
+ * This function searches the structure for active Publicity.
  * \param list Employee* Pointer to array of employees
  * \param len int Array length
- * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ * \return int Return (0) if False - (1) if True
  *
  */
 int publicity_ArrayIsEmpty (Publicity* list, int len)
@@ -187,9 +187,9 @@ int publicity_ArrayIsEmpty (Publicity* list, int len)
 	return retorno;
 }
 
-/** \brief Publicity print
- * This function prints the list of active employees.
- * \param list Employee* Pointer to array of employees
+/** \brief Publicity print by ID Client.
+ * This function prints the list of active Publicity.
+ * \param list Employee* Pointer to array of Publicity
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -219,8 +219,8 @@ int publicity_printIdClient(Publicity* list, int len, int idClient)
 }
 
 /** \brief Publicity remove by idClient.
- * This function prints the list of active employees.
- * \param list Employee* Pointer to array of employees
+ * This function prints the list of active Publicity.
+ * \param list Employee* Pointer to array of Publicity
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -245,7 +245,7 @@ int publicity_removeByIdClient(Publicity* list, int len, int idClient)
 
 /** \brief Search for an empty index.
  * This function looks for a space in the structure which is empty to be able to data.
- * \param list Employee* Pointer to array of employees
+ * \param list Publicity* Pointer to array of Publicity
  * \param len int Array length
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
@@ -269,9 +269,9 @@ int publicity_serchIndexEmpty(Publicity* list, int len)
 
 /** \brief find an Client by Id en returns the index position in array.
  *
- * \param Employee* list, Pointer to array of employees.
+ * \param Publicity* list, Pointer to array of employees.
  * \param int len, Array length.
- * \param int id, Identity number employee.
+ * \param int id, Identity number Publicity.
  * \return Return employee index position or (-1) if [Invalid length or NULL
 pointer received or employee not found]
  *
@@ -292,11 +292,11 @@ int publicity_findById(Publicity* list, int len,int id)
 
 /** \brief find an Client by Id en returns the index position in array.
  *
- * \param Employee* list, Pointer to array of employees.
+ * \param Publicity* list, Pointer to array of Publicity.
  * \param int len, Array length.
- * \param int id, Identity number employee.
- * \return Return employee index position or (-1) if [Invalid length or NULL
-pointer received or employee not found]
+ * \param int id, Identity number Publicity.
+ * \return Return Publicity index position or (-1) if [Invalid length or NULL
+pointer received or Publicity not found]
  *
  */
 int publicity_counterByIdClient(Publicity* list, int len,int id)
@@ -314,13 +314,12 @@ int publicity_counterByIdClient(Publicity* list, int len,int id)
 	return retorno;
 }
 
-/** \brief find an Client by Id en returns the index position in array.
+/** \brief Paused posts counter.
  *
- * \param Employee* list, Pointer to array of employees.
+ * \param Publicity* list, Pointer to array of Publicity.
  * \param int len, Array length.
- * \param int id, Identity number employee.
- * \return Return employee index position or (-1) if [Invalid length or NULL
-pointer received or employee not found]
+ * \return Return Publicity index position or (-1) if [Invalid length or NULL
+pointer received or Publicity not found]
  *
  */
 int publicity_counterPaused(Publicity* list, int len)
@@ -338,6 +337,13 @@ int publicity_counterPaused(Publicity* list, int len)
 	return retorno;
 }
 
+/** \brief Get maximum publicity.
+ *
+ * \param Publicity* list, Pointer to array of employees.
+ * \param int len, Array length.
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int publicity_areaNumberMax(Publicity* list, int len)
 {
     Publicity bufferList;
@@ -363,6 +369,13 @@ int publicity_areaNumberMax(Publicity* list, int len)
     return retorno;
 }
 
+/** \brief Area posts counter.
+ *
+ * \param Publicity* list, Pointer to array of employees.
+ * \param int len, Array length.
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int publicity_counterByAreaNumber(Publicity* list, int len, int areaNumber, int *pCounter)
 {
     int retorno =-1;
