@@ -1,16 +1,20 @@
 /*
  ============================================================================
- Name        : PRIMER_PARCIAL_LABO1.c
+ Name        : PRIMER_PARCIAL_LABO1
  Author      : Unía, Ezequiel Matías
  Version     :
  Copyright   : 
- Description : Hello World in C, Ansi-style
+ Description : Primer Parcial Laboratorio 1
  ============================================================================
  */
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "logic.h"
 
 int main(void) {
+	setbuf(stdout, NULL);
+	logic_menu();
 	return EXIT_SUCCESS;
 }
+
