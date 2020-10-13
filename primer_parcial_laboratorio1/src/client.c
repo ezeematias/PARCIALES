@@ -195,17 +195,15 @@ int client_print(Client* list, int len)
 	int retorno = -1;
 	if(list != NULL && len > 0)
 	{
-		printf("\n-----------------------------------------------------------------------------------");
-		printf("\n|| --[ID]-- || ------[NOMBRE]------ || -----[APELLIDO]----- || -----[CUIT]------ ||");
-		printf("\n-----------------------------------------------------------------------------------");
+		printf(MSG_PRINT_CLIENTINDEX);
 		for(int i=0;i<len;i++)
 		{
 			if(list[i].isEmpty == FALSE)
 			{
-				printf("\n|| > %d   || %-20s || %-20s || %17s ||", list[i].idClient, list[i].name,list[i].lastName,list[i].cuit);
+				printf(MSG_PRINT_INDEX, list[i].idClient, list[i].name,list[i].lastName,list[i].cuit);
 			}
 		}
-		printf("\n-----------------------------------------------------------------------------------\n");
+		printf(MSG_PRINT_INDEX_OUT);
 		retorno = 0;
 	}
 	return retorno;
@@ -222,16 +220,12 @@ int client_printIdex(Client* list, int index)
 {
 	int retorno = -1;
 
-	printf("\n-----------------------------------------------------------------------------------");
-	printf("\n|| --[ID]-- || ------[NOMBRE]------ || -----[APELLIDO]----- || -----[CUIT]------ ||");
-	printf("\n-----------------------------------------------------------------------------------");
-
+	printf(MSG_PRINT_CLIENTINDEX);
 	if(list[index].isEmpty == FALSE)
 	{
-		printf("\n|| > %d   || %-20s || %-20s || %17s ||", list[index].idClient, list[index].name,list[index].lastName,list[index].cuit);
+		printf(MSG_PRINT_INDEX, list[index].idClient, list[index].name,list[index].lastName,list[index].cuit);
 	}
-
-	printf("\n-----------------------------------------------------------------------------------\n");
+	printf(MSG_PRINT_INDEX_OUT);
 	retorno = 0;
 
 	return retorno;
@@ -259,7 +253,7 @@ int client_modify(Client* list, int len)
 	{
 		if(utn_getInt(&bufferId, 50, 2, MSG_ID, MSG_ERROR, 2000, 1000)==0)
 		{
-			bufferIndex = client_findById(list, LONG_NAME, bufferId);
+			bufferIndex = client_findById(list, len, bufferId);
 			if(bufferIndex >= 0)
 			{
 				do

@@ -97,17 +97,15 @@ int publicity_print(Publicity* list, int len)
 	int retorno = -1;
 	if(list != NULL && len > 0)
 	{
-		printf("\n--------------------------------------------------------------------------------------------------------");
-		printf("\n|| --[ID]-- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||");
-		printf("\n--------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_PUBLICITY);
 		for(int i=0;i<len;i++)
 		{
 			if(list[i].isEmpty == FALSE && list[i].isActive==TRUE)
 			{
-				printf("\n|| > %d   ||   %-64s  || %14d ||", list[i].idPublicity, list[i].textPublicity,list[i].idClient);
+				printf(MSG_PRINTINDEX_PUBLICITY, list[i].idPublicity, list[i].textPublicity,list[i].idClient);
 			}
 		}
-		printf("\n--------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_PUBLICITYOUT);
 		retorno = 0;
 	}
 	return retorno;
@@ -125,17 +123,15 @@ int publicity_printPaused(Publicity* list, int len)
 	int retorno = -1;
 	if(list != NULL && len > 0)
 	{
-		printf("\n--------------------------------------------------------------------------------------------------------");
-		printf("\n|| --[ID]-- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||");
-		printf("\n--------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_PUBLICITY);
 		for(int i=0;i<len;i++)
 		{
 			if(list[i].isEmpty == FALSE && list[i].isActive==FALSE)
 			{
-				printf("\n|| > %d   || %-64s || %14d ||", list[i].idPublicity, list[i].textPublicity,list[i].idClient);
+				printf(MSG_PRINTINDEX_PUBLICITY, list[i].idPublicity, list[i].textPublicity,list[i].idClient);
 			}
 		}
-		printf("\n--------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_PUBLICITYOUT);
 		retorno = 0;
 	}
 	return retorno;
@@ -204,21 +200,19 @@ int publicity_printIdClient(Publicity* list, int len, int idClient)
 
 	if(publicity_counterByIdClient(list, len, idClient)>0)
 	{
-		printf("\n--------------------------------------------------------------------------------------------------------");
-		printf("\n|| -[ID PUBLICACIÓN]- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||");
-		printf("\n--------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_PUBLICITY);
 		for(int i=0;i<len;i++)
 		{
 			if(list[i].isEmpty == FALSE && list[i].isActive == TRUE && list[i].idClient == idClient)
 			{
-				printf("\n|| > %d   || %-64s || %14d ||", list[i].idPublicity, list[i].textPublicity,list[i].idClient);
+				printf(MSG_PRINTINDEX_PUBLICITY, list[i].idPublicity, list[i].textPublicity,list[i].idClient);
 			}
 		}
-		printf("\n--------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_PUBLICITYOUT);
 		retorno = 0;
 	}else
 	{
-		printf("\n------- [NO HAY PUBLICACIONES] --------");
+		printf(MSG_NOMORE_PUBLICITY);
 	}
 
 	return retorno;
@@ -364,7 +358,7 @@ int publicity_areaNumberMax(Publicity* list, int len)
                 }
             }
         }
-        printf("\n-----[RUBRO CON MÁS PUBLICACIONES] ----\n> %d", bufferList.areaNumber);
+        printf(MSG_AREANUMBER, bufferList.areaNumber);
     }
     return retorno;
 }

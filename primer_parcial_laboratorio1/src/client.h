@@ -34,6 +34,9 @@
 #define MSG_NOMORESPACE "-----------------------------------\nXXXXXX| NO HAY ESPACIO PARA |XXXXXX\nXXXXXX|   NUEVOS CLIENTES   |XXXXXX\n-----------------------------------\n\n"
 #define MSG_CUIT_DUPLICATED "\n-- [EL CUIT INGRESADO YA EXISTE] --"
 #define MSG_INFOCLIENT "\n------ CLIENTE A MODIFICAR -------\n\n[ID] -------> %d\n[NOMBRE] ---> %s\n[APELLIDO] -> %s\n[CUIT] -----> %s\n[INDEX] ----> %d\n"
+#define MSG_PRINT_CLIENTINDEX "\n-----------------------------------------------------------------------------------\n|| --[ID]-- || ------[NOMBRE]------ || -----[APELLIDO]----- || -----[CUIT]------ ||\n-----------------------------------------------------------------------------------"
+#define MSG_PRINT_INDEX "\n|| > %d   || %-20s || %-20s || %17s ||"
+#define MSG_PRINT_INDEX_OUT "\n-----------------------------------------------------------------------------------\n"
 
 struct
 {

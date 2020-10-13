@@ -19,6 +19,12 @@
 #define MSG_IDPUBLICITY "\n---------- ID PUBLICITY -----------\n"
 #define MSG_IDPUBLICITY_NEW "\n---------- ID PUBLICITY -----------\n> %d"
 #define MSG_NOMORESPACE_PUBLICITY "-----------------------------------\nXXXXXX| NO HAY ESPACIO PARA |XXXXXX\nXXXXXX|  MÁS PUBLICACIONES  |XXXXXX\n-----------------------------------\n\n"
+#define MSG_PRINT_PUBLICITY "\n--------------------------------------------------------------------------------------------------------\n|| --[ID]-- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||\n--------------------------------------------------------------------------------------------------------"
+//#define MSG_PRINT_COUNTER "\n------------------------------------------------------------------------------------------------------------------\n|| -[ID PUBLICACIÓN]- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||\n------------------------------------------------------------------------------------------------------------------"
+#define MSG_PRINT_PUBLICITYOUT "\n--------------------------------------------------------------------------------------------------------"
+#define MSG_PRINTINDEX_PUBLICITY "\n|| > %d   ||   %-64s  || %14d ||"
+#define MSG_NOMORE_PUBLICITY "\n------- [NO HAY PUBLICACIONES] --------\n"
+#define MSG_AREANUMBER "\n-----[RUBRO CON MÁS PUBLICACIONES] ----\n> %d\n"
 
 struct
 {

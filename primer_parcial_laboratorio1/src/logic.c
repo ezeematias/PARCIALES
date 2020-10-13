@@ -202,7 +202,7 @@ int logic_removeClient (Client* listClient, int lenClient, Publicity* listPublic
 		index = client_findById(listClient, LONG_CLIENT, bufferId);
 		if(index > -1)
 		{
-			printf("\n----- CLIENTE A DAR DE BAJA ------\n\n[ID] -------> %d\n[NOMBRE] ---> %s\n[APELLIDO] -> %s\n[CUIT] --> %s\n[INDEX] ----> %d\n",bufferId, listClient[index].name,listClient[index].lastName,listClient[index].cuit,index);
+			printf(MSG_REMOVE_CLIENT,bufferId, listClient[index].name,listClient[index].lastName,listClient[index].cuit,index);
 			publicity_printIdClient(listPublicity, lenPublicity, bufferId);
 			if((utn_getInt(&option, 50, 2, MSG_OPTION_REMOVE, MSG_ERROR, 1, 0)==0) && option == 1)
 			{
@@ -306,18 +306,16 @@ int logic_print(Client* listClient, int lenClient, Publicity* listPublicity, int
 	int counterPublicity;
 	if(listClient != NULL && lenClient > 0)
 	{
-		printf("\n---------------------------------------------------------------------------------------------------------------");
-		printf("\n|| --[ID]-- || ------[NOMBRE]------ || -----[APELLIDO]----- || -----[CUIT]------ || -[PUBLICIDADES ACTIVAS]- ||");
-		printf("\n---------------------------------------------------------------------------------------------------------------");
+		printf(MSG_PRINT_CLIENT);
 		for(int i=0;i<lenClient;i++)
 		{
 			counterPublicity = publicity_counterByIdClient(listPublicity, lenPublicity, listClient[i].idClient);
 			if(listClient[i].isEmpty == FALSE && counterPublicity > -1)
 			{
-				printf("\n|| > %d   || %-20s || %-20s || %17s ||            %4d          ||", listClient[i].idClient, listClient[i].name,listClient[i].lastName,listClient[i].cuit,counterPublicity);
+				printf(MSG_PRINT, listClient[i].idClient, listClient[i].name,listClient[i].lastName,listClient[i].cuit,counterPublicity);
 			}
 		}
-		printf("\n---------------------------------------------------------------------------------------------------------------\n");
+		printf(MSG_PRINT_OUT);
 		retorno = 0;
 	}
 	return retorno;
@@ -328,10 +326,6 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 {
 	int retorno = -1;
 	int option;
-	int i;
-	int bufferIndex;
-	int counterPublicity;
-	int bufferCounterPublicity = 0;
 	int flagContinue = TRUE;
 
 	do
@@ -341,16 +335,7 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 			switch (option)
 			{
 			case 1:
-				for (i=0;i<lenClient;i++)
-				{
-					counterPublicity = publicity_counterByIdClient(listPublicity, lenPublicity, listClient[i].idClient);
-					if(i==0 || counterPublicity > bufferCounterPublicity)
-					{
-						bufferCounterPublicity = counterPublicity;
-						bufferIndex = i;
-					}
-				}
-				client_printIdex(listClient, bufferIndex);
+				logic_clientMorePublicity(listClient, lenClient, listPublicity, lenPublicity);
 				break;
 			case 2:
 				if(publicity_counterPaused(listPublicity, lenPublicity)>0)
@@ -373,8 +358,32 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 	return retorno;
 }
 
+/** \brief find an Client by Id en returns the index position in array.
+ *
+ * \param Employee* list, Pointer to array of employees.
+ * \param int len, Array length.
+ * \param int id, Identity number employee.
+ * \return Return employee index position or (-1) if [Invalid length or NULL
+pointer received or employee not found]
+ *
+ */
+int logic_clientMorePublicity(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
+{
+	int retorno = -1;
+	int i;
+	int bufferIndex;
+	int counterPublicity;
+	int bufferCounterPublicity = 0;
 
-
-
-
-
+	for (i=0;i<lenClient;i++)
+	{
+		counterPublicity = publicity_counterByIdClient(listPublicity, lenPublicity, listClient[i].idClient);
+		if(i==0 || counterPublicity > bufferCounterPublicity)
+		{
+			bufferCounterPublicity = counterPublicity;
+			bufferIndex = i;
+		}
+	}
+	client_printIdex(listClient, bufferIndex);
+	return retorno;
+}
