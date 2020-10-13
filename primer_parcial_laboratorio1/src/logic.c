@@ -32,32 +32,6 @@ int logic_menu (void)
 	client_initClient(listClient, LONG_CLIENT);
 	publicity_initPublicity(listPublicity, LONG_PUBLICITY);
 
-	// ----------------Harcodeo Manual------------------------
-	listClient[0].idClient = client_newId();
-	strncpy(listClient[0].name, "EZEQUIEL", LONG_NAME);
-	strncpy(listClient[0].lastName, "UNIA", LONG_LASTNAME);
-	strncpy(listClient[0].cuit, "20-35019857-2", LONG_CUIT);
-	listClient[0].isEmpty = FALSE;
-
-	listClient[1].idClient = client_newId();
-	strncpy(listClient[1].name, "MATIAS", LONG_NAME);
-	strncpy(listClient[1].lastName, "UNIA", LONG_LASTNAME);
-	strncpy(listClient[1].cuit, "20-35019857-3", LONG_CUIT);
-	listClient[1].isEmpty = FALSE;
-
-	listClient[2].idClient = client_newId();
-	strncpy(listClient[2].name, "PEDRO", LONG_NAME);
-	strncpy(listClient[2].lastName, "GARCIA", LONG_LASTNAME);
-	strncpy(listClient[2].cuit, "20-40019857-2", LONG_CUIT);
-	listClient[2].isEmpty = FALSE;
-
-	listClient[3].idClient = client_newId();
-	strncpy(listClient[3].name, "JORGE", LONG_NAME);
-	strncpy(listClient[3].lastName, "MARCON", LONG_LASTNAME);
-	strncpy(listClient[3].cuit, "20-10119850-5", LONG_CUIT);
-	listClient[3].isEmpty = FALSE;
-	// ------------------------------------------------------
-
 	do
 	{
 		utn_getInt(&option, 3, attempts, MSG_OPTION_MENU,MSG_OPTION_ERROR, 8, 0);
