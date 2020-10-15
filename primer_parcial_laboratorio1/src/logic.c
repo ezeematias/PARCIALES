@@ -371,14 +371,23 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 
 	do
 	{
-		if(utn_getInt(&option, 3, 2, MSG_REPORT_MENU,MSG_OPTION_ERROR, 3, 0)==0)
+		if(utn_getInt(&option, 3, 2, MSG_REPORT_MENU,MSG_OPTION_ERROR, 5, 0)==0)
 		{
 			switch (option)
 			{
 			case 1:
+
 				logic_clientMorePublicity(listClient, lenClient, listPublicity, lenPublicity);
 				break;
 			case 2:
+				// Clientes con activos
+				logic_clientMorePublicityActive(listClient, lenClient, listPublicity, lenPublicity);
+				break;
+			case 3:
+				// clientes con pausados
+				logic_clientMorePublicityPaused(listClient, lenClient, listPublicity, lenPublicity);
+				break;
+			case 4:
 				if(publicity_counterPaused(listPublicity, lenPublicity)>0)
 				{
 					printf(MSG_PAUSED_PUBLICITY_OK,publicity_counterPaused(listPublicity, lenPublicity));
@@ -388,7 +397,7 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 					printf(MSG_PAUSED_PUBLICITY_FAIL);
 				}
 				break;
-			case 3:
+			case 5:
 				publicity_areaNumberMax(listPublicity, lenPublicity);
 				break;
 			case 0:
@@ -426,7 +435,85 @@ int logic_clientMorePublicity(Client* listClient, int lenClient, Publicity* list
 			bufferIndex = i;
 		}
 	}
-	client_printIdex(listClient, bufferIndex);
+	if(bufferCounterPublicity == 0)
+	{
+		printf(MSG_PUBLICITY_FAIL);
+	}else
+	{
+		client_printIdex(listClient, bufferIndex);
+	}
+	return retorno;
+}
+
+/** \brief Client maximun publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int logic_clientMorePublicityActive(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
+{
+	int retorno = -1;
+	int i;
+	int bufferIndex;
+	int counterPublicity;
+	int bufferCounterPublicity = 0;
+
+	for (i=0;i<lenClient;i++)
+	{
+		counterPublicity = publicity_counterByIdClientActive(listPublicity, lenPublicity, listClient[i].idClient);
+		if(i==0 || counterPublicity > bufferCounterPublicity)
+		{
+			bufferCounterPublicity = counterPublicity;
+			bufferIndex = i;
+		}
+	}
+	if(bufferCounterPublicity == 0)
+	{
+		printf(MSG_ACTIVE_FAIL);
+	}else
+	{
+		client_printIdex(listClient, bufferIndex);
+	}
+	return retorno;
+}
+
+/** \brief Client maximun publicity.
+ * This function receives the structure to disable a user by ID number.
+ * \param list Client* Pointer to array of employees
+ * \param len int Array length
+ * \param list Publicity* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
+int logic_clientMorePublicityPaused(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
+{
+	int retorno = -1;
+	int i;
+	int bufferIndex;
+	int counterPublicity;
+	int bufferCounterPublicity = 0;
+
+	for (i=0;i<lenClient;i++)
+	{
+		counterPublicity = publicity_counterByIdClientPaused(listPublicity, lenPublicity, listClient[i].idClient);
+		if(i==0 || counterPublicity > bufferCounterPublicity)
+		{
+			bufferCounterPublicity = counterPublicity;
+			bufferIndex = i;
+		}
+	}
+	if(bufferCounterPublicity == 0)
+	{
+		printf(MSG_PAUSED_FAIL);
+	}else
+	{
+		client_printIdex(listClient, bufferIndex);
+	}
 	return retorno;
 }
 

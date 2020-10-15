@@ -57,5 +57,7 @@ int publicity_ArrayIsEmpty (Publicity* list, int len);
 int publicity_printPaused(Publicity* list, int len);
 int publicity_ArrayIsActive (Publicity* list, int len);
 int publicity_ArrayIsPaused (Publicity* list, int len);
+int publicity_counterByIdClientActive(Publicity* list, int len,int id);
+int publicity_counterByIdClientPaused(Publicity* list, int len,int id);
 
 #endif /* PUBLICITY_H_ */

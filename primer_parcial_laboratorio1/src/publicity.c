@@ -353,7 +353,55 @@ int publicity_counterByIdClient(Publicity* list, int len,int id)
 	int counterPublicity = 0;
 	for(int i=0;i<len;i++)
 	{
-		if(list[i].idClient == id && list[i].isEmpty == FALSE && list[i].isActive)
+		if(list[i].idClient == id && list[i].isEmpty == FALSE)
+		{
+			counterPublicity++;
+		}
+		retorno = counterPublicity;
+	}
+	return retorno;
+}
+
+/** \brief find an Client by Id en returns the index position in array.
+ *
+ * \param Publicity* list, Pointer to array of Publicity.
+ * \param int len, Array length.
+ * \param int id, Identity number Publicity.
+ * \return Return Publicity index position or (-1) if [Invalid length or NULL
+pointer received or Publicity not found]
+ *
+ */
+int publicity_counterByIdClientPaused(Publicity* list, int len,int id)
+{
+	int retorno = -1;
+	int counterPublicity = 0;
+	for(int i=0;i<len;i++)
+	{
+		if(list[i].idClient == id && list[i].isEmpty == FALSE && list[i].isActive == FALSE)
+		{
+			counterPublicity++;
+		}
+		retorno = counterPublicity;
+	}
+	return retorno;
+}
+
+/** \brief find an Client by Id en returns the index position in array.
+ *
+ * \param Publicity* list, Pointer to array of Publicity.
+ * \param int len, Array length.
+ * \param int id, Identity number Publicity.
+ * \return Return Publicity index position or (-1) if [Invalid length or NULL
+pointer received or Publicity not found]
+ *
+ */
+int publicity_counterByIdClientActive(Publicity* list, int len,int id)
+{
+	int retorno = -1;
+	int counterPublicity = 0;
+	for(int i=0;i<len;i++)
+	{
+		if(list[i].idClient == id && list[i].isEmpty == FALSE && list[i].isActive == TRUE)
 		{
 			counterPublicity++;
 		}

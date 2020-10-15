@@ -17,7 +17,7 @@
 #define MSG_START "-----------------------------------\nXXXXXXX| INICIANDO PROGRAMA |XXXXXXX\n-----------------------------------\n"
 #define MSG_OFF  "------------------------------------\nXXXXXXX| APAGANDO PROGRAMA |XXXXXXX\n------------------------------------\n"
 #define MSG_OPTION_MENU "\n------ SELECCIONE UNA OPCIÓN ------\n\n[1] -> AGREGAR NUEVO CLIENTE\n[2] -> MODIFICAR CLIENTE\n[3] -> BAJA DE CLIENTE\n[4] -> NUEVA PUBLICACIÓN\n[5] -> PAUSAR PUBLICACIÓN\n[6] -> REANUDAR PUBLICACIÓN\n[7] -> IMPRIMIR CLIENTES\n[8] -> INFORMES\n\n[0] -> SALIR\n\n[OPCIÓN SELECCIONADA]"
-#define MSG_REPORT_MENU "\n------ SELECCIONE UNA OPCIÓN ------\n\n[1] -> CLIENTE CON MÁS PUBLICACIONES\n[2] -> CANTIDAD DE PUBLICACIONES PAUSADAS\n[3] -> RUBRO CON MÁS PUBLICACIONES\n\n[0] -> SALIR\n\n[OPCIÓN SELECCIONADA]"
+#define MSG_REPORT_MENU "\n------ SELECCIONE UNA OPCIÓN ------\n\n[1] -> CLIENTE CON MÁS PUBLICACIONES\n[2] -> CLIENTE CON MÁS PUBLICACIONES ACTIVAS\n[3] -> CLIENTE CON MÁS PUBLICACIONES PAUSADAS\n[4] -> CANTIDAD DE PUBLICACIONES PAUSADAS\n[5] -> RUBRO CON MÁS PUBLICACIONES\n\n[0] -> SALIR\n\n[OPCIÓN SELECCIONADA]"
 #define MSG_OPTION_ISACTIVE "\n------ SELECCIONE UNA OPCIÓN ------\n\n[1] -> CONFIRMAR CAMBIO\n[0] -> ATRAS\n\n[OPCIÓN SELECCIONADA]"
 #define MSG_OPTION_ERROR "------------ ERROR ------------"
 #define MSG_CLIENT_FAIL    "------------------------------------\nX [DEBE INGRESAR CLIENTES PRIMERO] X\n------------------------------------\n"
@@ -49,5 +49,7 @@ int logic_isPausedPublicity (Client* listClient, int lenClient, Publicity* listP
 int logic_clientMorePublicity(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity);
 int logic_manualPublicity (Publicity* listPublicity);
 int logic_manualClient (Client* listClient);
+int logic_clientMorePublicityActive(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity);
+int logic_clientMorePublicityPaused(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity);
 
 #endif /* LOGIC_H_ */
