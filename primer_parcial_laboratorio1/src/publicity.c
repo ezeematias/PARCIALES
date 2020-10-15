@@ -144,6 +144,31 @@ int publicity_printPaused(Publicity* list, int len)
  * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
  *
  */
+int publicity_ArrayIsPaused (Publicity* list, int len)
+{
+	int i;
+	int retorno = 0;
+	if(list!=NULL && len>0)
+	{
+		for(i=0;i<len;i++)
+		{
+			if(list[i].isEmpty == FALSE && list[i].isActive==FALSE)
+			{
+				retorno = 1;
+				break;
+			}
+		}
+	}
+	return retorno;
+}
+
+/** \brief Empty Publicity list
+ * This function searches the structure for active employees.
+ * \param list Employee* Pointer to array of employees
+ * \param len int Array length
+ * \return int Return (-1) if Error [Invalid length or NULL pointer] - (0) if Ok
+ *
+ */
 int publicity_ArrayIsActive (Publicity* list, int len)
 {
 	int i;
@@ -152,7 +177,7 @@ int publicity_ArrayIsActive (Publicity* list, int len)
 	{
 		for(i=0;i<len;i++)
 		{
-			if(list[i].isActive==TRUE)
+			if(list[i].isActive==FALSE)
 			{
 				retorno = 1;
 				break;
@@ -186,6 +211,29 @@ int publicity_ArrayIsEmpty (Publicity* list, int len)
 	}
 	return retorno;
 }
+
+/*
+int publicity_printIdClient(Publicity* list, int len, int idClient)
+{
+	int retorno = -1;
+
+	printf(MSG_PRINTREMOVE_PUBLICITY);
+	for(int i=0;i<len;i++)
+	{
+		if(list[i].isEmpty == FALSE && list[i].isActive == TRUE && list[i].idClient == idClient)
+		{
+			printf(MSG_PRINTACTIVEREMOVE_PUBLICITY, list[i].idPublicity, list[i].textPublicity,list[i].idClient);
+		}
+		if(list[i].isEmpty == FALSE && list[i].isActive == FALSE && list[i].idClient == idClient)
+		{
+			printf(MSG_PRINTPAUSEDREMOVE_PUBLICITY, list[i].idPublicity, list[i].textPublicity,list[i].idClient);
+		}
+	}
+	printf(MSG_PRINTREMOVE_PUBLICITYOUT);
+	retorno = 0;
+	return retorno;
+}
+*/
 
 /** \brief Publicity print by ID Client.
  * This function prints the list of active Publicity.

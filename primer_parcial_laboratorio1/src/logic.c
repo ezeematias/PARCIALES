@@ -31,6 +31,8 @@ int logic_menu (void)
 	printf(MSG_START);
 	client_initClient(listClient, LONG_CLIENT);
 	publicity_initPublicity(listPublicity, LONG_PUBLICITY);
+	logic_manualClient(listClient);
+	logic_manualPublicity(listPublicity);
 
 	do
 	{
@@ -174,17 +176,18 @@ int logic_menu (void)
  */
 int logic_removeClient (Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity)
 {
-
 	int retorno = -1;
 	int bufferId;
 	int index;
 	int option;
+	client_print(listClient, lenClient);
 	if((utn_getInt(&bufferId, 50, 2, MSG_ID, MSG_ERROR, 2000, 999)==0))
 		{
 		index = client_findById(listClient, LONG_CLIENT, bufferId);
 		if(index > -1)
 		{
-			printf(MSG_REMOVE_CLIENT,bufferId, listClient[index].name,listClient[index].lastName,listClient[index].cuit,index);
+			client_printIdex(listClient, index);
+			//printf(MSG_REMOVE_CLIENT,bufferId, listClient[index].name,listClient[index].lastName,listClient[index].cuit,index);
 			publicity_printIdClient(listPublicity, lenPublicity, bufferId);
 			if((utn_getInt(&option, 50, 2, MSG_OPTION_REMOVE, MSG_ERROR, 1, 0)==0) && option == 1)
 			{
@@ -248,13 +251,19 @@ int logic_isActivePublicity (Client* listClient, int lenClient, Publicity* listP
 		if(utn_getInt(&bufferIdPublicity, 5, 2, MSG_IDPUBLICITY, MSG_ERROR, 6000, 4999)==0 && publicity_findById(listPublicity, lenPublicity, bufferIdPublicity)>= 0)
 		{
 			indexPublicity = publicity_findById(listPublicity, lenPublicity, bufferIdPublicity);
-			indexClient = client_findById(listClient, LONG_CLIENT, listPublicity[indexPublicity].idClient);
-			client_printIdex(listClient, indexClient);
-			if(utn_getInt(&option, 5, 2, MSG_OPTION_ISACTIVE, MSG_ERROR, 1, 0)==0)
+			if(listPublicity[indexPublicity].isActive == TRUE)
 			{
+				indexClient = client_findById(listClient, LONG_CLIENT, listPublicity[indexPublicity].idClient);
+				client_printIdex(listClient, indexClient);
+				if(utn_getInt(&option, 5, 2, MSG_OPTION_ISACTIVE, MSG_ERROR, 1, 0)==0)
+				{
 
-			listPublicity[indexPublicity].isActive = FALSE;
-			retorno = 0;
+				listPublicity[indexPublicity].isActive = FALSE;
+				retorno = 0;
+				}
+			}else
+			{
+				printf(MSG_ID_PAUSED);
 			}
 		}else
 		{
@@ -284,19 +293,25 @@ int logic_isPausedPublicity (Client* listClient, int lenClient, Publicity* listP
 	int indexPublicity;
 	int option;
 
-	if(publicity_ArrayIsActive(listPublicity, lenPublicity)==0)
+	if(publicity_ArrayIsPaused(listPublicity, lenPublicity)==1)
 	{
 		publicity_printPaused(listPublicity, lenPublicity);
 		if(utn_getInt(&bufferIdPublicity, 5, 2, MSG_IDPUBLICITY, MSG_ERROR, 6000, 4999)==0 && publicity_findById(listPublicity, lenPublicity, bufferIdPublicity)>= 0)
 		{
 			indexPublicity = publicity_findById(listPublicity, lenPublicity, bufferIdPublicity);
-			indexClient = client_findById(listClient, LONG_CLIENT, listPublicity[indexPublicity].idClient);
-			client_printIdex(listClient, indexClient);
-			if(utn_getInt(&option, 5, 2, MSG_OPTION_ISACTIVE, MSG_ERROR, 1, 0)==0)
+			if(listPublicity[indexPublicity].isActive == FALSE)
 			{
+				indexClient = client_findById(listClient, LONG_CLIENT, listPublicity[indexPublicity].idClient);
+				client_printIdex(listClient, indexClient);
+				if(utn_getInt(&option, 5, 2, MSG_OPTION_ISACTIVE, MSG_ERROR, 1, 0)==0)
+				{
 
-			listPublicity[indexPublicity].isActive = TRUE;
-			retorno = 0;
+				listPublicity[indexPublicity].isActive = TRUE;
+				retorno = 0;
+				}
+			}else
+			{
+				printf(MSG_ID_ACTIVE);
 			}
 		}else
 		{
@@ -367,6 +382,7 @@ int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, in
 				if(publicity_counterPaused(listPublicity, lenPublicity)>0)
 				{
 					printf(MSG_PAUSED_PUBLICITY_OK,publicity_counterPaused(listPublicity, lenPublicity));
+					publicity_printPaused(listPublicity, lenPublicity);
 				}else
 				{
 					printf(MSG_PAUSED_PUBLICITY_FAIL);
@@ -411,5 +427,75 @@ int logic_clientMorePublicity(Client* listClient, int lenClient, Publicity* list
 		}
 	}
 	client_printIdex(listClient, bufferIndex);
+	return retorno;
+}
+
+int logic_manualClient (Client* listClient)
+{
+	int retorno = -1;
+	//--- HARCODEO MANUAL CLIENTES -----------------------------
+	listClient[0].idClient = client_newId();
+	strncpy(listClient[0].name, "EZEQUIEL", LONG_NAME);
+	strncpy(listClient[0].lastName, "UNIA", LONG_LASTNAME);
+	strncpy(listClient[0].cuit, "20-35019857-2", LONG_CUIT);
+	listClient[0].isEmpty = FALSE;
+
+	listClient[1].idClient = client_newId();
+	strncpy(listClient[1].name, "MATIAS", LONG_NAME);
+	strncpy(listClient[1].lastName, "UNIA", LONG_LASTNAME);
+	strncpy(listClient[1].cuit, "20-25019700-5", LONG_CUIT);
+	listClient[1].isEmpty = FALSE;
+
+	listClient[2].idClient = client_newId();
+	strncpy(listClient[2].name, "PEPITO", LONG_NAME);
+	strncpy(listClient[2].lastName, "GARCIA", LONG_LASTNAME);
+	strncpy(listClient[2].cuit, "20-12124719-9", LONG_CUIT);
+	listClient[2].isEmpty = FALSE;
+
+	listClient[3].idClient = client_newId();
+	strncpy(listClient[3].name, "MARTA", LONG_NAME);
+	strncpy(listClient[3].lastName, "GOMEZ", LONG_LASTNAME);
+	strncpy(listClient[3].cuit, "27-54874198-0", LONG_CUIT);
+	listClient[3].isEmpty = FALSE;
+	return retorno;
+}
+int logic_manualPublicity (Publicity* listPublicity)
+{
+	int retorno = -1;
+	//--- HARCODEO MANUAL PUBLICIDAD -----------------------------
+	listPublicity[0].idPublicity = publicity_newId();
+	listPublicity[0].idClient = 1000;
+	listPublicity[0].isEmpty = FALSE;
+	listPublicity[0].isActive = TRUE;
+	listPublicity[0].areaNumber = 10;
+	strncpy(listPublicity[0].textPublicity, "Hola, como estas?", LONG_TEXT);
+
+	listPublicity[1].idPublicity = publicity_newId();
+	listPublicity[1].idClient = 1000;
+	listPublicity[1].isEmpty = FALSE;
+	listPublicity[1].isActive = TRUE;
+	listPublicity[1].areaNumber = 12;
+	strncpy(listPublicity[1].textPublicity, "Bien, vos?", LONG_TEXT);
+
+	listPublicity[2].idPublicity = publicity_newId();
+	listPublicity[2].idClient = 1001;
+	listPublicity[2].isEmpty = FALSE;
+	listPublicity[2].isActive = TRUE;
+	listPublicity[2].areaNumber = 10;
+	strncpy(listPublicity[2].textPublicity, "#HolaMundo.com", LONG_TEXT);
+
+	listPublicity[3].idPublicity = publicity_newId();
+	listPublicity[3].idClient = 1001;
+	listPublicity[3].isEmpty = FALSE;
+	listPublicity[3].isActive = TRUE;
+	listPublicity[3].areaNumber = 10;
+	strncpy(listPublicity[3].textPublicity, "ESTABA PINTANDO", LONG_TEXT);
+
+	listPublicity[4].idPublicity = publicity_newId();
+	listPublicity[4].idClient = 1001;
+	listPublicity[4].isEmpty = FALSE;
+	listPublicity[4].isActive = TRUE;
+	listPublicity[4].areaNumber = 11;
+	strncpy(listPublicity[4].textPublicity, "Chauchis", LONG_TEXT);
 	return retorno;
 }

@@ -21,6 +21,8 @@
 #define MSG_IDCLIENT "\n----------- ID CLIENTE ------------\n> %d"
 #define MSG_ID "\n------- INGRESE ID CLIENTE --------\n"
 #define MSG_ID_FAIL "\n-----------------------------------\nXXX| NO EXISTE EL ID INGRESADO |XXX\n-----------------------------------\n"
+#define MSG_ID_PAUSED "\n-----------------------------------\nX| YA ESTÁ PAUSADA ESA PUBLICACIÓN |X\n-----------------------------------\n"
+#define MSG_ID_ACTIVE "\n-----------------------------------\nX| YA ESTÁ ACTIVA ESTA PUBLICACIÓN |X\n-----------------------------------\n"
 #define MSG_ID_FAILATTE "\n-----------------------------------\nXXX| NO EXISTE EL ID INGRESADO |XXX\nXXX|    NO HAY MÁS INTENTOS    |XXX\n-----------------------------------"
 #define MSG_NAME_OK "\n-----------------------------------\nXXXXXXXX| NOMBRE CARGADO |XXXXXXXXX\n-----------------------------------\n"
 #define MSG_NAME_FAIL "\n-----------------------------------\nXXXXX| NO SE CARGÓ EL NOMBRE |XXXXX\n-----------------------------------\n"

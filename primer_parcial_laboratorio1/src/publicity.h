@@ -22,9 +22,13 @@
 #define MSG_PRINT_PUBLICITY "\n--------------------------------------------------------------------------------------------------------\n|| --[ID]-- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||\n--------------------------------------------------------------------------------------------------------"
 //#define MSG_PRINT_COUNTER "\n------------------------------------------------------------------------------------------------------------------\n|| -[ID PUBLICACIÓN]- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- ||\n------------------------------------------------------------------------------------------------------------------"
 #define MSG_PRINT_PUBLICITYOUT "\n--------------------------------------------------------------------------------------------------------"
-#define MSG_PRINTINDEX_PUBLICITY "\n|| > %d   ||   %-64s  || %14d ||"
+#define MSG_PRINTINDEX_PUBLICITY "\n|| > %d   ||   %-64s   || %14d ||"
 #define MSG_NOMORE_PUBLICITY "\n------- [NO HAY PUBLICACIONES] --------\n"
 #define MSG_AREANUMBER "\n-----[RUBRO CON MÁS PUBLICACIONES] ----\n> %d\n"
+#define MSG_PRINTREMOVE_PUBLICITY "\n--------------------------------------------------------------------------------------------------------------------\n|| --[ID]-- || -----------------------[MENSAJE PUBLICITARIO]----------------------- || -[CLIENTE ID]- || -[ESTADO]- ||\n--------------------------------------------------------------------------------------------------------------------"
+#define MSG_PRINTACTIVEREMOVE_PUBLICITY "\n|| > %d   ||   %-64s   || %14d ||   ACTIVO   ||"
+#define MSG_PRINTPAUSEDREMOVE_PUBLICITY "\n|| > %d   ||   %-64s   || %14d ||   PAUSADO  ||"
+#define MSG_PRINTREMOVE_PUBLICITYOUT "\n--------------------------------------------------------------------------------------------------------------------"
 
 struct
 {
@@ -52,5 +56,6 @@ int publicity_removeByIdClient(Publicity* list, int len, int idClient);
 int publicity_ArrayIsEmpty (Publicity* list, int len);
 int publicity_printPaused(Publicity* list, int len);
 int publicity_ArrayIsActive (Publicity* list, int len);
+int publicity_ArrayIsPaused (Publicity* list, int len);
 
 #endif /* PUBLICITY_H_ */

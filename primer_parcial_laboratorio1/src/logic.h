@@ -33,7 +33,7 @@
 #define MSG_REMOVE_CLIENT "\n----- CLIENTE A DAR DE BAJA ------\n\n[ID] -------> %d\n[NOMBRE] ---> %s\n[APELLIDO] -> %s\n[CUIT] --> %s\n[INDEX] ----> %d\n"
 #define MSG_ADD_PUBLICITY_OK  "\n----- [CREADO CORRECTAMENTE] -----\n"
 #define MSG_ADD_PUBLICITY_FAIL   "\n---- [NO SE CARGÓ PUBLICIDAD] ----\n"
-#define MSG_PAUSED_PUBLICITY_OK  "\n----- PUBLICIDADES PAUSADAS ------\n> %d"
+#define MSG_PAUSED_PUBLICITY_OK  "\n----- CANTIDAD DE PUBLICIDADES PAUSADAS ------\n> %d\n"
 #define MSG_PAUSED_PUBLICITY_FAIL "\n- [NO HAY PUBLICACIONES PAUSADAS]-\n"
 #define MSG_PRINT_CLIENT "\n---------------------------------------------------------------------------------------------------------------\n|| --[ID]-- || ------[NOMBRE]------ || -----[APELLIDO]----- || -----[CUIT]------ || -[PUBLICIDADES ACTIVAS]- ||\n---------------------------------------------------------------------------------------------------------------"
 #define MSG_PRINT "\n|| > %d   || %-20s || %-20s || %17s ||            %4d          ||"
@@ -47,5 +47,7 @@ int logic_print(Client* listClient, int lenClient, Publicity* listPublicity, int
 int logic_report(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity);
 int logic_isPausedPublicity (Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity);
 int logic_clientMorePublicity(Client* listClient, int lenClient, Publicity* listPublicity, int lenPublicity);
+int logic_manualPublicity (Publicity* listPublicity);
+int logic_manualClient (Client* listClient);
 
 #endif /* LOGIC_H_ */
