@@ -1,0 +1,10 @@
+IDSALES,IDCLIENT,QUANTITYPOSTERS,FILENAME,ZONE,STATUS
+5000,1000,15,perritosCalientes.psd,0,0
+5001,1000,5,panchitosFrios.psd,1,0
+5002,1001,11,conoFritas.psd,2,0
+5003,1002,20,patys.psd,0,0
+5004,1000,23,pepasLocas.jpg,1,0
+5005,1001,51,messi.spd,2,0
+5006,1003,54,rodolfo.jpg,3,0
+5007,1003,20,papitas.pep,3,0
+5008,1000,15,yoyo.pic,1,0
