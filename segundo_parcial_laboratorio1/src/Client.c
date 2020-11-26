@@ -15,17 +15,32 @@
 #include "parser.h"
 #include "utn.h"
 
-
+/** \brief Search and create a memory space
+ *
+ *  \return pointer to dynamic memory.
+ */
 Client* client_new()
 {
 	return (Client*)malloc(sizeof(Client));
 }
 
+/** \brief Delete a memory space
+ *
+ * \param Client* this: pointer to Client
+ *  \return (void)
+ */
 void client_delete(Client* this)
 {
 	free(this);
 }
 
+/** \brief Returns what is in the structure in the ID field.
+ *
+ * \param Client* this: pointer to client
+ * \param int* idClient, Get ID.
+ * \return int Return (ID) / [-1] if error.
+ *
+ */
 int client_getIdClient(Client* this, int* idClient)
 {
 	int retorno = -1;
@@ -36,6 +51,14 @@ int client_getIdClient(Client* this, int* idClient)
 	}
 	return retorno;
 }
+
+/** \brief Returns what is in the structure in the ID field.
+ *
+ * \param client* this: pointer to client
+ * \param char* nameClient, Get nameClient.
+ * \return int Return (ID) / [-1] if error.
+ *
+ */
 int client_getNameClient(Client* this, char* nameClient)
 {
 	int retorno = -1;
@@ -46,6 +69,14 @@ int client_getNameClient(Client* this, char* nameClient)
 	}
 	return retorno;
 }
+
+/** \brief Returns what is in the structure in the ID field.
+ *
+ * \param client* this: pointer to client
+ * \param char* lastNameClient, Get nameClient.
+ * \return int Return (ID) / [-1] if error.
+ *
+ */
 int client_getLastNameClient(Client* this, char* lastNameClient)
 {
 	int retorno = -1;
@@ -56,6 +87,14 @@ int client_getLastNameClient(Client* this, char* lastNameClient)
 	}
 	return retorno;
 }
+
+/** \brief Returns what is in the structure in the ID field.
+ *
+ * \param client* this: pointer to client
+ * \param char* cuitClient, Get cuitClient.
+ * \return int Return (ID) / [-1] if error.
+ *
+ */
 int client_getCuitClient(Client* this, char* cuitClient)
 {
 	int retorno = -1;
@@ -66,31 +105,27 @@ int client_getCuitClient(Client* this, char* cuitClient)
 	}
 	return retorno;
 }
-int client_getPaidSales(Client* this, int* paidSales)
-{
-	int retorno = -1;
-	if(this!=NULL)
-	{
-		*paidSales = this->paidSales;
-		retorno = 0;
-	}
-	return retorno;
-}
-int client_getUnpaidSales(Client* this, int* unpaidSales)
-{
-	int retorno = -1;
-	if(this!=NULL)
-	{
-		*unpaidSales = this->unpaidSales;
-		retorno = 0;
-	}
-	return retorno;
-}
+
+/** \brief Check if the value is valid
+ *
+ * \param int idClient, Pointer to the memory space where the obtained value will be left.
+ * \return (0) FALSE / (1) TRUE
+ */
 int isValidIdClient(int idClient)
 {
 	int retorno = 1;
+	if(idClient < 0)
+	{
+		retorno = 0;
+	}
 	return retorno;
 }
+
+/** \brief Verify that the array is only letters.
+ *
+ * \param char* nameClient, Pointer to the memory space where the obtained value will be left.
+ * \return (0) FALSE / (1) TRUE
+ */
 int isValidNameClient(char* nameClient)
 {
 	int retorno = 1;
@@ -108,6 +143,12 @@ int isValidNameClient(char* nameClient)
 	}
 	return retorno;
 }
+
+/** \brief Verify that the array is only numbers.
+ *
+ * \param char* cuitClient, Pointer to the memory space where the obtained value will be left.
+ * \return (0) FALSE / (1) TRUE
+ */
 int isValidCuitClient(char* cuitClient)
 {
 	int retorno;
@@ -131,14 +172,13 @@ int isValidCuitClient(char* cuitClient)
 	}
 	return retorno;
 }
-int isValidPaidSales(int paidSales)
-{
-	return 1;
-}
-int isValidUnpaidSales(int unpaidSales)
-{
-	return 1;
-}
+
+/** \brief Load the name in the client field and validate that the data is correct
+ *
+ * \param Client* this: pointer to client
+ * \param int* idClient: pointer of the idClient to be set to an client
+ * \return [-1] if error / [0] if ok
+ */
 int client_setIdClient(Client* this, int idClient)
 {
 	int retorno = -1;
@@ -149,6 +189,13 @@ int client_setIdClient(Client* this, int idClient)
 	}
 	return retorno;
 }
+
+/** \brief Load the name in the client field and validate that the data is correct
+ *
+ * \param Client* this: pointer to client
+ * \param char* nameClient: pointer of the nameClient to be set to an client
+ * \return [-1] if error / [0] if ok
+ */
 int client_setNameClient(Client* this, char* nameClient)
 {
 	int retorno = -1;
@@ -159,6 +206,13 @@ int client_setNameClient(Client* this, char* nameClient)
 	}
 	return retorno;
 }
+
+/** \brief Load the name in the client field and validate that the data is correct
+ *
+ * \param Client* this: pointer to client
+ * \param char* lastNameClient: pointer of the lastNameClient to be set to an client
+ * \return [-1] if error / [0] if ok
+ */
 int client_setLastNameClient(Client* this, char* lastNameClient)
 {
 	int retorno = -1;
@@ -169,6 +223,13 @@ int client_setLastNameClient(Client* this, char* lastNameClient)
 	}
 	return retorno;
 }
+
+/** \brief Load the name in the client field and validate that the data is correct
+ *
+ * \param Client* this: pointer to client
+ * \param char* cuitClient: pointer of the cuitClient to be set to an client
+ * \return [-1] if error / [0] if ok
+ */
 int client_setCuitClient(Client* this, char* cuitClient)
 {
 	int retorno = -1;
@@ -179,28 +240,9 @@ int client_setCuitClient(Client* this, char* cuitClient)
 	}
 	return retorno;
 }
-int client_setPaidSales(Client* this, int paidSales)
-{
-	int retorno = -1;
-	if(this != NULL && isValidPaidSales(paidSales) == 1)
-	{
-		this->paidSales = paidSales;
-		retorno = 0;
-	}
-	return retorno;
-}
-int client_setUnpaidSales(Client* this, int unpaidSales)
-{
-	int retorno = -1;
-	if(this != NULL && isValidUnpaidSales(unpaidSales) == 1)
-	{
-		this->unpaidSales = unpaidSales;
-		retorno = 0;
-	}
-	return retorno;
-}
 
-/** \brief New Employee whith parameters text.
+
+/** \brief New Client whith parameters text.
  *
  * \param char* idClient, Get ID
  * \param char* nameClient, Get Name
@@ -220,12 +262,12 @@ Client* client_newParameters(char* idClient,char* nameClient,char* lastNameClien
 	return NULL;
 }
 
-/** \brief New Employee whith parameters.
+/** \brief New Client whith parameters text.
  *
- * \param char* idStr, Get ID
- * \param char* nombreStr, Get Name
- * \param char* horasTrabajadasStr, Get Hours
- * \param char* sueldo, Get Salary.
+ * \param int* idClient, Get ID
+ * \param char* nameClient, Get Name
+ * \param char* lastNameClient, Get Last Name
+ * \param char* cuitClient, Get CUIT.
  * \return int Return (NULL) if Error [Invalid length or NULL pointer] - (Employee*) if Ok
  *
  */
@@ -243,10 +285,9 @@ Client* client_newWithParameters(int idClient,char* nameClient,char* lastNameCli
 	return NULL;
 }
 
-/** \brief New Employee. This function looks for a space in the structure which is empty to be able to data.
+/** \brief Add a client
  *
- * \param list Employee* Pointer to array of employees
- * \return int Return (NULL) if Error [Invalid length or NULL pointer] - (Employee*) if Ok
+ * \return int Return Client
  *
  */
 Client* client_add(void)
@@ -313,9 +354,9 @@ int client_saveId(char* path, int id)
     return retorno;
 }
 
-/* \brief prints emplyee data
+/* \brief prints client data
  *
- * \param Employee* this: pointer to employee
+ * \param Client* this: pointer to client
  * \return [-1] if error / [0] if ok
  */
 int client_print(Client* this)
@@ -342,7 +383,7 @@ int client_print(Client* this)
 /** \brief find an Client by CUIT.
  *
  * \param void* this, Pointer to array of client.
- * \param char* cuit, Cuit cliet.
+ * \param void* cuit, Cuit cliet.
  * \return Return [0] Client exists - [-1] No exists
  */
 int client_findByCuit(void* this, void* cuit)
@@ -362,7 +403,7 @@ int client_findByCuit(void* this, void* cuit)
 /** \brief find an Client by ID.
  *
  * \param void* this, Pointer to array of client.
- * \param char* cuit, Cuit cliet.
+ * \param void* idClient, idClient cliet.
  * \return Return [0] Client exists - [-1] No exists
  */
 int client_findByIdClient(void* this, void* idClient)
@@ -379,3 +420,6 @@ int client_findByIdClient(void* this, void* idClient)
 	}
 	return retorno;
 }
+
+
+

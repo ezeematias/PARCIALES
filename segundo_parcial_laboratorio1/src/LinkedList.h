@@ -45,7 +45,11 @@ LinkedList* ll_subList(LinkedList* this,int from,int to);
 LinkedList* ll_clone(LinkedList* this);
 int ll_sort(LinkedList* this, int (*pFunc)(void* ,void*), int order);
 
-int ll_map(LinkedList* this, int (*pFunc)(void*,void*),void* pElement);
-int ll_filter(LinkedList* this, int (*pFunc)(void*));
-int ll_reduceInt (LinkedList* this, int (*pFunc)(void*));
+int ll_mapOld(LinkedList* this, int (*pFunc)(void*));
+int ll_filterOld(LinkedList* this, int (*pFunc)(void*));
+int ll_reduceIntOld (LinkedList* this, int (*pFunc)(void*));
 float ll_reduceFloat (LinkedList* this, float (*pFunc)(void*));
+
+int ll_map(LinkedList* this, int (*pFunc)(void*,void*),void* pElement);
+LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void*,void*),void* pElement);
+int ll_reduceInt (LinkedList* this, int (*pFunc)(void*,void*),void* pElement);

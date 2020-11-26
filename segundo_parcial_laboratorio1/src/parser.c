@@ -15,10 +15,10 @@
 #include "Sales.h"
 #include "parser.h"
 
-/** \brief Parser employee data from data.csv file (text mode).
+/** \brief Parser client data from client.txt file (text mode).
  *
  *  \param FILE* pFile, File path
- *  \param LinkedList* pArrayListEmployee, Pointer to LinkedList
+ *  \param LinkedList* pArrayList, Pointer to LinkedList
  *  \return int (-1) if ERROR (0) if OK
  */
 int parser_clientFromText(FILE* pFile , LinkedList* pArrayList)
@@ -47,10 +47,10 @@ int parser_clientFromText(FILE* pFile , LinkedList* pArrayList)
     return retorno;
 }
 
-/** \brief Parser employee data from data.csv file (text mode).
+/** \brief Parser sales data from sales.txt file (text mode).
  *
  *  \param FILE* pFile, File path
- *  \param LinkedList* pArrayListEmployee, Pointer to LinkedList
+ *  \param LinkedList* pArrayList, Pointer to LinkedList
  *  \return int (-1) if ERROR (0) if OK
  */
 int parser_salesFromText(FILE* pFile , LinkedList* pArrayList)
@@ -79,7 +79,7 @@ int parser_salesFromText(FILE* pFile , LinkedList* pArrayList)
     return retorno;
 }
 
-/** \brief Parser ID data from data.csv file (text mode).
+/** \brief Parser ID data from clientID.txt file (text mode).
  *
  * \param FILE* pFile, File path
  * \return int (-1) if ERROR (0) if OK
@@ -99,7 +99,7 @@ int parser_clientId(FILE* pFile)
     return retorno;
 }
 
-/** \brief Parser ID data from data.csv file (text mode).
+/** \brief Parser ID data from salesID.txt file (text mode).
  *
  * \param FILE* pFile, File path
  * \return int (-1) if ERROR (0) if OK

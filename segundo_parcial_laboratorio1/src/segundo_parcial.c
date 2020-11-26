@@ -35,10 +35,8 @@ int main(void) {
         switch(option)
         {
             case 1:
-            	//Add Client
-            	if(!controller_addClient(listClient))
+            	if(!controller_addClient(listClient) && !controller_saveAsText(listClient))
             	{
-            		controller_saveAsText(listClient);
             		printf(MSG_ADD_OK);
             	}else
             	{
@@ -46,10 +44,8 @@ int main(void) {
             	}
                 break;
             case 2:
-            	//Venta de Afiches
-            	if(!controller_addSales(listSales,listClient))
+            	if(!controller_addSales(listSales,listClient) && !controller_saveAsTextSales(listSales))
             	{
-            		controller_saveAsTextSales(listSales);
             		printf(MSG_ADDSALES_OK);
                 }else
                 {
@@ -57,22 +53,51 @@ int main(void) {
                 }
                 break;
             case 3:
-            	//Modificar afiche/venta
+            	if(!controller_editSales(listSales, listClient, 1) && !controller_saveAsTextSales(listSales))
+            	{
+            		printf(MSG_MODIFYSALES_OK);
+                }else
+                {
+                	printf(MSG_MODIFYSALES_FAIL);
+                }
                 break;
             case 4:
-            	//Cobrar Ventas (Modificar)
+            	if(!controller_editSales(listSales, listClient, 2) && !controller_saveAsTextSales(listSales))
+            	{
+            		printf(MSG_MODIFYSALES_OK);
+                }else
+                {
+                	printf(MSG_MODIFYSALES_FAIL);
+                }
                 break;
             case 5:
-            	//Generar informe de cobros
+            	if(!controller_isChargedReport(listSales, listClient))
+            	{
+            		printf(MSG_IS_CHARGED_OK);
+                }else
+                {
+                	printf(MSG_IS_CHARGED_FAIL);
+                }
             	break;
             case 6:
-            	//Generar informe de deudas
+            	if(!controller_toChargedReport(listSales, listClient))
+            	{
+            		printf(MSG_TO_CHARGED_OK);
+                }else
+                {
+                	printf(MSG_TO_CHARGED_FAIL);
+                }
             	break;
             case 7:
-            	//Generar estadisticas || 1- clientes con más afiches vendidos || 2- Clientes con menos afiches vendidos || 3- Venta con más afiches.
+            	if(!controller_generalStatistics(listSales, listClient))
+                {
+                	printf(MSG_GENERAL_OK);
+                }else
+                {
+                	printf(MSG_GENERAL_FAIL);
+                }
             	break;
             case 8:
-            	//Listar Clientes
             	if(!controller_ListClient(listClient))
                 {
                 	printf(MSG_LIST_OK);
@@ -82,7 +107,6 @@ int main(void) {
                 }
             	break;
             case 9:
-            	//Listar Clientes
             	if(!controller_ListSales(listSales))
                 {
                 	printf(MSG_LISTSALES_OK);

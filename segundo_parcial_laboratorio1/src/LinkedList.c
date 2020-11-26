@@ -254,18 +254,13 @@ int ll_remove(LinkedList* this,int index)
 int ll_clear(LinkedList* this)
 {
     int returnAux = -1;
-    Node* nodeReturn = NULL;
 	int len = ll_len(this);
-    if(this != NULL && len > 0)
+    if(this != NULL && len > -1)
     {
-    	for(int i=0; i < len; i++)
-    	{
-			nodeReturn = ll_get(this, i);
-			free(nodeReturn);
-			this->size--;
-
-    	}
-    	this->pFirstNode = NULL;
+		for(int i=0; i<len; i++)
+		{
+			ll_remove(this, i);
+		}
     	returnAux = 0;
     }
     return returnAux;
@@ -562,11 +557,92 @@ int ll_map(LinkedList* this, int (*pFunc)(void*,void*),void* pElement)
     return returnAux;
 }
 
-// Filter  - Filtrar / Eliminar elementos de un arrayList en función
 
-int ll_filter(LinkedList* this, int (*pFunc)(void*))
+LinkedList* ll_filter(LinkedList* this, int (*pFunc)(void*,void*),void* pElement)
 {
+	int len = ll_len(this);
+	void* aux = NULL;
+	LinkedList* newList = ll_newLinkedList();
 
+	if(this != NULL && pFunc != NULL)
+	{
+		for(int i = 0;i < len;i++)
+		{
+			aux = ll_get(this, i);
+			if(pFunc(aux,pElement)==0) // Puede ser == 0 / == 1 dependiendo de la función criterio
+			{
+				ll_add(newList, aux);
+			}
+		}
+	}
+	return newList;
+}
+
+// Reduce - Reduce / Reduce una lista a un número Tienen que ser dos, una INT otra FLOAT
+
+int ll_reduceInt (LinkedList* this, int (*pFunc)(void*,void*),void* pElement) // llaman a una función que devuelven un valor y lo acumulamos ( LA SUMA DE ALGO // ACUMULADOR)
+{
+	int accReturn = 0;
+	void* aux = NULL;
+	int len = ll_len(this);
+	if(this != NULL && pFunc != NULL)
+	{
+		for(int i = 0 ; i < len ; i++)
+		{
+			aux = ll_get(this, i);
+			accReturn += pFunc(aux,pElement);
+		}
+	}
+	return accReturn;
+}
+
+float ll_reduceFloat (LinkedList* this, float (*pFunc)(void*)) // llaman a una función que devuelven un valor y lo acumulamos ( LA SUMA DE ALGO // ACUMULADOR)
+{
+	float accReturn = 0;
+	void* aux = NULL;
+	int len = ll_len(this);
+	if(this != NULL && pFunc != NULL)
+	{
+		for(int i = 0 ; i < len ; i++)
+		{
+			aux = ll_get(this, i);
+			accReturn += pFunc(aux);
+		}
+	}
+	return accReturn;
+}
+
+/** \brief Mapea los elementos de la lista utilizando la funcion criterio recibida como parametro
+ * \param pList LinkedList* Puntero a la lista
+ * \param pFunc (*pFunc) Puntero a la funcion criterio
+ * \return int Retorna  (-1) Error: si el puntero a la listas es NULL
+                                ( 0) Si ok
+ */
+int ll_mapOld(LinkedList* this, int (*pFunc)(void*))
+{
+    int returnAux = -1;
+    int length = ll_len(this);
+    void* auxElement;
+    if(this != NULL)
+    {
+        for(int i = 0 ; i < length ; i++)
+        {
+            auxElement = ll_get(this, i);
+            if(!pFunc(auxElement))
+            {
+            	printf("PIOLA");
+            }else
+            {
+            	printf("NAAAH PIOLA");
+            }
+        }
+    }
+    return returnAux;
+}
+
+// Filter  - Filtrar / Eliminar elementos de un arrayList en función
+int ll_filterOld(LinkedList* this, int (*pFunc)(void*))
+{
 	int returnAux = -1;
 	int len = ll_len(this);
 	void* aux = NULL;
@@ -586,27 +662,9 @@ int ll_filter(LinkedList* this, int (*pFunc)(void*))
 	return returnAux;
 }
 
-// Reduce - Reduce / Reduce una lista a un número Tienen que ser dos, una INT otra FLOAT
-
-int ll_reduceInt (LinkedList* this, int (*pFunc)(void*)) // llaman a una función que devuelven un valor y lo acumulamos ( LA SUMA DE ALGO // ACUMULADOR)
+int ll_reduceIntOld (LinkedList* this, int (*pFunc)(void*)) // llaman a una función que devuelven un valor y lo acumulamos ( LA SUMA DE ALGO // ACUMULADOR)
 {
 	int accReturn = 0;
-	void* aux = NULL;
-	int len = ll_len(this);
-	if(this != NULL && pFunc != NULL)
-	{
-		for(int i = 0 ; i < len ; i++)
-		{
-			aux = ll_get(this, i);
-			accReturn += pFunc(aux);
-		}
-	}
-	return accReturn;
-}
-
-float ll_reduceFloat (LinkedList* this, float (*pFunc)(void*)) // llaman a una función que devuelven un valor y lo acumulamos ( LA SUMA DE ALGO // ACUMULADOR)
-{
-	float accReturn = 0;
 	void* aux = NULL;
 	int len = ll_len(this);
 	if(this != NULL && pFunc != NULL)

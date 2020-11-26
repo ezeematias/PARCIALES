@@ -22,15 +22,12 @@
 #define MSG_PRINT_OUT  "\n-----------------------------------------------------------------------------------------\n"
 #define MSG_CUIT_ERROR "\n---[ EL CUIT YA EXISTE ]-----------------------------------------------------------------\n"
 
-
 typedef struct
 {
     int idClient;
     char nameClient[LONG_NAME];
     char lastNameClient[LONG_NAME];
     char cuitClient[LONG_CUIT];
-    int paidSales;
-    int unpaidSales;
 }Client;
 
 Client* client_new();
@@ -50,14 +47,6 @@ int isValidLastNameClient(char* lastNameClient);
 int client_setCuitClient(Client* this, char* cuitClient);
 int client_getCuitClient(Client* this, char* cuitClient);
 int isValidCuitClient(char* cuitClient);
-
-int client_setPaidSales(Client* this, int paidSales);
-int client_getPaidSales(Client* this, int* paidSales);
-int isValidPaidSales(int paidSales);
-
-int client_setPaidSales(Client* this, int unpaidSales);
-int client_setUnpaidSales(Client* this, int unpaidSales);
-int isValidPaidSales(int unpaidSales);
 
 Client* client_add(void);
 int client_newId(char* path);
